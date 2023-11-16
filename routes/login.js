@@ -34,11 +34,19 @@ router.post("/", function (req, res, next) {
 
   if (username === "admin") {
     if (password === "admin") {
-      res.send("success");
+      res.status(200).json({
+        message: "login success",
+      });
     }
-    res.send("wrong password");
+    res.status(400).json({
+      message: "password tidak valid",
+      details: "Pastikan password telah diisi dengan benar.",
+    });
   } else {
-    res.send("username not found");
+    res.status(400).json({
+      message: "username dan password tidak valid",
+      details: "Pastikan username dan password telah diisi dengan benar.",
+    });
   }
 });
 
